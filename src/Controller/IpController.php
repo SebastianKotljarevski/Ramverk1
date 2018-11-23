@@ -18,11 +18,18 @@ class IpController implements ContainerInjectableInterface
         $res = "";
         $adress = $this->di->get("request")->getGet("ipadress");
         $boolean = 0;
+        $result = "";
+        $tempresult;
+        $userip = $_SERVER["REMOTE_ADDR"] ?? '127.0.0.1';
+
 
         if ($adress != "") {
             if (filter_var($adress, FILTER_VALIDATE_IP)) {
                 $res = "$adress är en giltig IP adress";
                 $boolean = 1;
+                $ipmodel = new IpModel();
+                $tempresult = $ipmodel->getIpData($adress);
+                $result = json_decode($tempresult);
             } else {
                 $res = "$adress är inte en giltig IP adress";
                 $boolean = 0;
@@ -31,13 +38,17 @@ class IpController implements ContainerInjectableInterface
         $page->add("anax/controller/index", [
             "res" => $res,
             "ipadress" => $adress,
-            "boolean" => $boolean
+            "boolean" => $boolean,
+            "result" => $result,
+            "userip" => $userip
         ]);
 
         return $page->render([
             "res" => $res,
             "ipadress" => $adress,
-            "boolean" => $boolean
+            "boolean" => $boolean,
+            "result" => $result,
+            "userip" => $userip
         ]);
     }
 }
