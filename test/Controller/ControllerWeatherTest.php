@@ -8,43 +8,44 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test the FlatFileContentController.
  */
-class FlatFileContentControllerTest extends TestCase
+class ControllerWeatherTest extends TestCase
 {
-    
-    // Create the di container.
     protected $di;
     protected $controller;
 
-
-
-    /**
-     * Prepare before each test.
-     */
     protected function setUp()
     {
         global $di;
 
-        // Setup di
         $this->di = new DIFactoryConfig();
         $this->di->loadServices(ANAX_INSTALL_PATH . "/config/di");
 
-        // View helpers uses the global $di so it needs its value
         $di = $this->di;
 
-        // Setup the controller
-        $this->controller = new FlatFileContentController();
+        $this->controller = new WeatherController();
         $this->controller->setDI($this->di);
-        //$this->controller->initialize();
     }
-
-
 
     /**
      * Test the route "index".
      */
     public function testIndexAction()
     {
-        $res = $this->controller->catchAll();
+        $_GET["location"] = "130.237.28.40";
+        $res = $this->controller->indexAction();
+
+        $this->assertInstanceOf("\Anax\Response\Response", $res);
+
+        $body = $res->getBody();
+        $exp = "| ramverk1</title>";
+        $this->assertContains($exp, $body);
+    }
+
+    public function testIndexActionNotValid()
+    {
+        $_GET["location"] = "255.255.255.256";
+        $res = $this->controller->indexAction();
+
         $this->assertInstanceOf("\Anax\Response\Response", $res);
 
         $body = $res->getBody();

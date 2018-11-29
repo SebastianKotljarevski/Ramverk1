@@ -53,5 +53,10 @@ return [
             "url" => "controller",
             "title" => "Controller för kmom01",
         ],
+        [
+            "text" => "Weather",
+            "url" => "weather",
+            "title" => "Väder"
+        ],
     ],
 ];

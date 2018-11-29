@@ -14,7 +14,6 @@ class JsonController implements ContainerInjectableInterface
 
     public function indexAction()
     {
-        //$page = $this->di->get("page");
         $res = "";
         $adress = $this->di->get("request")->getGet("ipadress");
         $jsoninfo = [];
