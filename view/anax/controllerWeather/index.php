@@ -41,7 +41,8 @@ if ($bool == 1) {
         ?>
         </div>
     <br><br>
-    <?php }
+    <?php
+    }
 }?>
 
 <script>
@@ -50,10 +51,12 @@ function initMap() {
     <?php
     if ($bool == 1) {
         ?>
-        var user = {lat: <?= $weatherForecast->{'latitude'}; ?>, lng: <?= $weatherForecast->{'longitude'}; ?>};
+        var user = {lat: <?= $weatherForecast->{'latitude'}; ?>,
+                    lng: <?= $weatherForecast->{'longitude'}; ?>};
         <?php
     }
     ?>
+
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: user
