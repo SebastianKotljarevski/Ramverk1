@@ -40,6 +40,11 @@ return [
                         "url" => "redovisning/kmom04",
                         "title" => "Redovisning för kmom04.",
                     ],
+                    [
+                        "text" => "Kmom05",
+                        "url" => "redovisning/kmom05",
+                        "title" => "Redovisning för kmom05.",
+                    ],
                 ],
             ],
         ],
@@ -67,6 +72,11 @@ return [
             "text" => "Weather",
             "url" => "weather",
             "title" => "Väder"
+        ],
+        [
+            "text" => "Books",
+            "url" => "book",
+            "title" => "Böcker"
         ],
     ],
 ];

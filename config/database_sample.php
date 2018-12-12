@@ -16,7 +16,7 @@
  */
 if ($_SERVER["SERVER_NAME"] === "www.student.bth.se") {
     return [
-        "dsn"             => "mysql:host=blu-ray.student.bth.se;dbname=mos;",
+        "dsn"             => "sqlite:" . ANAX_INSTALL_PATH . "/data/db.sqlite",
         "username"        => "mos",
         "password"        => "hemligt",
         "driver_options"  => [
@@ -36,7 +36,7 @@ if ($_SERVER["SERVER_NAME"] === "www.student.bth.se") {
 }
 
 return [
-    "dsn"             => "mysql:host=127.0.0.1;dbname=ramverk1;",
+    "dsn"             => "sqlite:" . ANAX_INSTALL_PATH . "/data/db.sqlite",
     "username"        => "user",
     "password"        => "pass",
     "driver_options"  => [
